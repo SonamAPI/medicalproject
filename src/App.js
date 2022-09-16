@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import ContactUs from './components/ContactUs';
+
+import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
+import LoginComponent from './components/LoginComponent';
 
 function App() {
   return (
@@ -11,11 +13,10 @@ function App() {
         <HeaderComponent />
         <div className="container">
           <Routes>
-            <Route path="/table" element={<ContactUs />} />
-            <Route path="/table" element={<FooterComponent />} />
-            <Route path="/table" element={<Login />} />
-            <Route path="/table" element={<ContactUs />} />
-            <Route path="/table" element={<ContactUs />} />
+            <Route path="/table" element={<LoginComponent/>} />
+            
+            
+            
 
           </Routes>
         </div>
