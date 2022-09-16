@@ -13,7 +13,7 @@ function App() {
           <Routes>
             <Route path="/table" element={<ContactUs />} />
             <Route path="/table" element={<FooterComponent />} />
-            <Route path="/table" element={< />} />
+            <Route path="/table" element={<Login />} />
             <Route path="/table" element={<ContactUs />} />
             <Route path="/table" element={<ContactUs />} />
 
