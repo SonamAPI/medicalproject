@@ -2,68 +2,149 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import APICalls from '../services/APICalls';
+import Navigations from './Navigations';
 
 class FeedbackComponent extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <div className='card'>
-      {/* nav bar  start*/}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <div className="container-fluid">
-              <a className="navbar-brand" href="#">Navbar</a>
-              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li className="nav-item">
-                          <a className="nav-link active" aria-current="page" href="/dashboard">Home</a>
-                      </li><li className="nav-item">
-                                    <a className="nav-link" href="/menu">Menu</a>
-                                </li>
-                      <li className="nav-item">
-                          <a className="nav-link" href="/contactUs">Contact Us</a>
-                      </li>
-                      <li className="nav-item">
-                          <a className="nav-link" href="/aboutUs">About Us</a>
-                      </li>
-                      <li className="nav-item">
-                          <a className="nav-link" href="#">Feedback</a>
-                      </li>
-                      <li className="nav-item">
-                                    <a className="nav-link " href="/billing">Billing</a>
-                                </li>
-                  </ul>
-                  <form className="d-flex">
-                      <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                      <button className="btn btn-outline-success" type="submit">Search</button>
-                  </form>
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+          fullName: "",
+          mail: "",
+          userAddress: "",
+          password: "",
+          gender: "",
+          contact: "",
+          age: "",
+          bloodGroup: "",
+          role: ""
+        }
+      }
+    
+      bloodGroupChange(e) {
+        this.setState({
+          bloodGroup: e.target.value
+        });
+      }
+    
+      ageChange(e) {
+        this.setState({
+          age: e.target.value
+        });
+      }
+      contactChange(e) {
+        this.setState({
+          contact: e.target.value
+        });
+      }
+      roleChange(e) {
+        this.setState({
+          role: e.target.value
+        });
+      }
+      fullNameChange(e) {
+        this.setState({
+          fullName: e.target.value
+        });
+      }
+    
+      mailChange(e) {
+        this.setState({
+          mail: e.target.value
+        });
+      }
+    
+      userAddressChange(e) {
+        this.setState({
+          userAddress: e.target.value
+        });
+      }
+      passwordChange(e) {
+        this.setState({
+          password: e.target.value
+        });
+      }
+    
+    
+      genderChange(e) {
+        this.setState({
+          gender: e.target.value
+        });
+      }  submitForm(e) {
+        e.preventDefault();
+        let hospitalObject = {
+          fullName: this.state.fullName,
+          mail: this.state.mail,
+          userAddress: this.state.userAddress,
+          password: this.state.password,
+          gender: this.state.gender,
+          contact: this.state.contact,
+          age: this.state.age,
+          bloodGroup: this.state.bloodGroup,
+          role: this.state.role,
+          yearofest: 0,
+          membername: "",
+          regNo:""
+        }
+    
+        console.log(hospitalObject);
+        
+      }
+      render() {
+    
+        const roles = ["user", "admin","NGO","Donar","Hospital"]
+        const genders = ["Male", "Female"]
+    
+        return (
+          <div>
+            <Navigations></Navigations>
+            <br></br>
+            <div className="container">
+              <div className="row">
+                <h4 className='text-center'>Give Us Your Valuable Feedback</h4><br></br>
+                <div className="card col-md-6 offset-md-3 offset-md-3">
+    
+                  <div className="card-body">
+                    <form >
+                      <div className="form-group">
+                        <label> Full Name: </label>
+                        <input placeholder="Full Name" name="fullName" className="form-control" value={this.state.fullName} onChange={this.fullNameChange.bind(this)} />
+                      </div>
+                      <br></br>
+                      <div className="form-group">
+                        <label> Mail: </label>
+                        <input placeholder="Email" name="mail" className="form-control" value={this.state.mail} onChange={this.mailChange.bind(this)} />
+                      </div><br></br>
+                      
+                      <div className="form-group">
+                        <label> Address: </label>
+                        <input placeholder="Address" name="userAddress" className="form-control" value={this.state.userAddress} onChange={this.userAddressChange.bind(this)} />
+                      </div><br></br>
+                      
+    
+                      
+                      <div className="form-group">
+                        <label> Contact: </label>
+                        <input placeholder="Contact" name="contact" className="form-control" value={this.state.contact} onChange={this.contactChange.bind(this)} />
+                      </div><br></br>
+                      
+    
+                        
+    
+                      <button className="btn btn-outline-primary" style={{ marginLeft: "100px" }} onClick={this.submitForm.bind(this)}>Save</button>
+                     
+                    </form>
+                  </div>
+                </div>
               </div>
-          </div>
-      </nav>
-      {/* nav bar end */}
-
-
-
-      <h2>Feedback</h2>
-Form pending
-      
-
-      <br></br><br></br><br></br>
-
-      
-  </div>
-      
-    )
-  }
-}
+              <br></br>
+              <br></br>
+              <br></br>
+            </div >
+          </div >
+        )
+      }
+    }
 
 export default FeedbackComponent

@@ -2,132 +2,79 @@ import React, { Component } from 'react';
 
 import APICalls from '../services/APICalls';
 export default  class MenuComponent extends Component {
-
     constructor(props) {
         super(props)
 
         this.state = {
-            first: "",
-            cities: [
-
-                { id: 1, name: "AA" }, { id: 2, name: "BB" }, { id: 3, name: "CC" }, { id: 2, name: "DDx" }
-            ],
-            items: []
-
+                employees: []
         }
+        this.addEmployee = this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this);
-        this.goToOrderPage = this.goToOrderPage.bind(this);
-    }
-    componentDidMount() {
-        APICalls.getItems().then((res) => {
-            this.setState({ items: res.data });
-        });
+        this.deleteEmployee = this.deleteEmployee.bind(this);
     }
 
+    deleteEmployee(id){
+        // EmployeeService.deleteEmployee(id).then( res => {
+        //     this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
+        // });
+    }
+    viewEmployee(id){
+        this.props.history.push(`/view-employee/${id}`);
+    }
+    editEmployee(id){
+        this.props.history.push(`/add-employee/${id}`);
+    }
 
-    goToOrderPage() {
-        window.location.href = "/order";
+    componentDidMount(){
+        // EmployeeService.getEmployees().then((res) => {
+        //     this.setState({ employees: res.data});
+        // });
     }
-    editEmployee() {
-        // this.props.history.push(`/create`);
-        window.location.href = "/create";
+
+    addEmployee(){
+        this.props.history.push('/add-employee/_add');
     }
+
     render() {
-
         return (
+            <div>
+                 <h2 className="text-center">Employees List</h2>
+                 <div className = "row">
+                    <button className="btn btn-primary" onClick={this.addEmployee}> Add Employee</button>
+                 </div>
+                 <br></br>
+                 <div className = "row">
+                        <table className = "table table-striped table-bordered">
 
-
-
-            <div className='card'>
-                {/* nav bar  start*/}
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <div className="container-fluid">
-                        <a className="navbar-brand" href="#">Navbar</a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="/dashboard">Home</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/contactUs">Contact Us</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/aboutUs">About Us</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/feedback">Feedback</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/billing">Billing</a>
-                                </li>
-                            </ul>
-                            <form className="d-flex">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button className="btn btn-outline-success" type="submit">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </nav>
-                {/* nav bar end */}
-
-
-
-                <h2>Menu</h2>
-
-                <div>
-
-                    {/* <ul>
-                        {
-                            this.state.cities.map(
-
-                                (vv) => 
-                                    <li key={vv.id}>{vv.name}</li>
-
-                                
-                            )
-                        }
-                    </ul> */}
-                </div>
-
-                <br></br><br></br><br></br>
-                <div className="row">
-                    <div className="col-sm-8"><div className='container '>
-                        <table className="table table-bordered ">
                             <thead>
                                 <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">name</th>
-                                    <th scope="col">price</th>
-
-
+                                    <th> Employee First Name</th>
+                                    <th> Employee Last Name</th>
+                                    <th> Employee Email Id</th>
+                                    <th> Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    this.state.items.map(
-                                        (itms, index) =>
-                                            <tr key={index}>
-                                                <th scope="row">{itms.itemID}</th>
-                                                <td>{itms.itemName}</td>
-                                                <td>{itms.price}</td>
-                                            </tr>
+                                    this.state.employees.map(
+                                        employee => 
+                                        <tr key = {employee.id}>
+                                             <td> { employee.firstName} </td>   
+                                             <td> {employee.lastName}</td>
+                                             <td> {employee.emailId}</td>
+                                             <td>
+                                                 <button onClick={ () => this.editEmployee(employee.id)} className="btn btn-info">Update </button>
+                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.deleteEmployee(employee.id)} className="btn btn-danger">Delete </button>
+                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(employee.id)} className="btn btn-info">View </button>
+                                             </td>
+                                        </tr>
                                     )
-
                                 }
-
-
                             </tbody>
                         </table>
-                    </div></div>
-                    <div className="col-sm-4"><button type="button" className="btn btn-primary" onClick={this.goToOrderPage} >Order Your Favorite Item</button></div>
-                </div>
+
+                 </div>
+
             </div>
-
-
-
         )
-    }
-}
+    }}
