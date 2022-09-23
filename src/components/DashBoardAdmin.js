@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navigations from './Navigations';
-import styles from './adminDashBoard.module.css';
-class AdminDashBoard extends Component {
+
+class DashBoardAdmin extends Component {
 
     constructor(props) {
         super(props)
@@ -232,4 +232,4 @@ class AdminDashBoard extends Component {
     }
 }
 
-export default AdminDashBoard
+export default DashBoardAdmin

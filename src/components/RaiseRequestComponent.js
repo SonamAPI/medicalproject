@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import APICalls from '../services/APICalls';
-import CommonClass from './CommonClass';
+
 import Navigations from './Navigations';
 export default class RaiseRequestComponent extends Component {
   constructor(props) {
@@ -134,7 +134,7 @@ export default class RaiseRequestComponent extends Component {
               <br></br>
               <div className="card-body ">
                 <form >
-                  <div className="form-group" onSubmit={this.submitForm.bind(this)}>
+                  <div className="form-group" >
                     <label> Med Type: </label>
                     <input placeholder="Hospital Name" name="medicineType" className="form-control" value={this.state.medicineDetails.medicineType || ""} onChange={this.changeMedicineType.bind(this)} />
                   </div>
@@ -149,8 +149,8 @@ export default class RaiseRequestComponent extends Component {
                   </div><br></br>
                   <div className="form-group">
                     <label> Role: </label>
-                    <select id='options'  defaultValue="User" placeholder="role" name="role" className="form-control" value={this.state.role} onChange={this.changeRole.bind(this)} >
-
+                    <select id='options'   placeholder="role" name="role" className="form-control" value={this.state.role} onChange={this.changeRole.bind(this)} >
+                    <option  >Select</option>
                       <option value="User" >User</option>
                       <option value="Admin">Admin</option>
                       <option value="Hospital">Hospital</option>

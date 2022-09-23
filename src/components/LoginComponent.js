@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import APICalls from '../services/APICalls';
 import ErrorPage from '../components/ErrorPage'; 
 import DashBoard from './DashBoardUser';
+import DashBoardUser from './DashBoardUser';
+import DashBoardAdmin from './DashBoardAdmin';
+import UserProvider from './ConstantClass';
 
 export default class LoginComponent extends Component {
     constructor(props) {
@@ -13,6 +16,7 @@ export default class LoginComponent extends Component {
             message: "",
             role: ""
         }
+        this.changeStattus=this.changeStattus.bind(this);
     }
 
     userNameChange = (e) => {
@@ -29,27 +33,40 @@ export default class LoginComponent extends Component {
             password: bio
         });
     };
+    changeStattus(id,role){
+        console.log('start changeStattus');
+        this.setState({
+            id:id,
+            role:role
+        })
+        console.log('end changeStattus');
 
+    }
+    
     submitDataF = (e) => {
         e.preventDefault();
 
         console.log(this.state.email, " ", this.state.password);
-        let responseMessages;
+        let responseId;
         let responseRole;
         APICalls.authenticate({ mail: this.state.email, password: this.state.password }).then(
             (resp) => {
                 console.log(resp.data.message, ' ', resp.data.role);
                 this.setState({
                     message: resp.data.message,
-                    role: resp.data.role
+                    role: resp.data.role,
+                    id: resp.data.id
                 });
-                responseMessages = resp.data.title;
-                responseRole = resp.data.complete;
+                responseId = resp.data.id;
+                responseRole = resp.data.role;
 
-                console.log("###messages: ", responseMessages);
+                console.log("###id: ", responseId);
                 console.log("###role: ", responseRole);
             }
         );
+        console.log('calling changeStattus');
+        this.changeStattus(1,"me");
+        
         console.log("login response : ", this.state.message);
         //logic to refer
         //  (responseMessages === "success") ?window.location = '/dashboard':window.location = '/error'
@@ -105,7 +122,12 @@ export default class LoginComponent extends Component {
 
     //-------------------
     render() {
+        const { id, role, changeObject } = this.context
+
         const resposneMessage = this.state.message;
+        const resposneRole = this.state.role;
+        const resposneID = this.state.id;
+
         let divv;
         if (resposneMessage === '' && this.state.showLoginPage == true) {
 
@@ -125,7 +147,8 @@ export default class LoginComponent extends Component {
                         <br></br>
                         <br></br>
 
-                        {this.state.message}   {this.state.role}
+                     status variables =    {this.state.id}   {this.state.role} <br></br>
+                     context variables : {id}  {role}
                         <div className='container' style={{ "overflowX": "auto" }} >
                             <table className="table text-center" cellSpacing="0" cellPadding="0" style={{
                                 "padding": "16px",
@@ -240,16 +263,25 @@ export default class LoginComponent extends Component {
 
         }
 
-        if (resposneMessage === 'success') {
+        if (resposneMessage === 'success'&& resposneRole !='admin') {
+            this.setState({
+                showLoginPage: false
+            })
+            divv = <div>
+                <UserProvider id={this.state.id} role={this.state.role}/>
+                <DashBoardUser></DashBoardUser>
+            </div>;
+        }
+
+        if (resposneMessage === 'success'&& resposneRole ==='admin') {
             this.setState({
                 showLoginPage: false
             })
             divv = <div>
                 
-                <DashBoard></DashBoard>
+                <DashBoardAdmin></DashBoardAdmin>
             </div>;
         }
-
         if (resposneMessage === 'Invalide Credentials') {
             this.setState({
                 showLoginPage: false

@@ -12,14 +12,14 @@ import UserRegistration from './components/registration/UserRegistration';
 import AdminRegistration from './components/registration/AdminRegistration';
 import MenuComponent from './components/MenuComponent';
 import LoginComponent from './components/LoginComponent';
-import Gallery from './components/Gallery';
+
 import MedicineListComponent from './components/MedicineListComponent';
 import RaiseRequestComponent from './components/RaiseRequestComponent';
-import DashBoard from './components/DashBoard';
+import DashBoardUser from './components/DashBoardUser';
 import FeedbackComponent from './components/FeedbackComponent';
-import CommanClass from './components/CommonClass';
+
 import AllRequests from './components/AllRequests';
-import AdminDashBoard from './components/adminOnly/AdminDashBoard';
+import DashBoardAdmin from './components/DashBoardAdmin';
 import AllApprovedRequests from './components/AllApprovedRequests';
 import AllPendingRequests from './components/AllPendingRequests';
 import AllDeclinedRequests from './components/AllDeclinedRequests';
@@ -29,6 +29,8 @@ import ContactUs from './components/ContactUs';
 import ErrorPage from './components/ErrorPage';
 import background from "./medical2.jpg";
 import SuccessRegister from './components/SuccessRegister';
+import UserProvider from './components/ConstantClass';
+import ParentClass from './components/ContextAPIDemo/ParentClass';
 
 function App() {
   const myStyle = {
@@ -39,14 +41,16 @@ function App() {
   };
   return (
     <div className='container-fluid' style={myStyle}>
-
+   <UserProvider>
+    
       <HeaderComponent />
 
       <Routes>
+      <Route path="/parent" element={<ParentClass />} />
         <Route path="/feedback" element={<FeedbackComponent />} />
         <Route path="/medicines" element={<MedicineListComponent />} />
         <Route path="/login" element={<LoginComponent />} />
-        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/dashboard" element={<DashBoardUser />} />
         <Route path="/raise-req" element={<RaiseRequestComponent />}></Route>
         <Route path="/all-request" element={<AllRequests />}></Route>createNGO
         <Route path="/createHospital" element={<HospitalRegistration />} />
@@ -54,7 +58,7 @@ function App() {
         <Route path="/createNGO" element={<NGORestration />}></Route>
         <Route path="/createDonar" element={<DonarRegistration />}></Route>
         <Route path="/createAdmin" element={<AdminRegistration />}></Route>
-        <Route path="/admin" element={<AdminDashBoard />}></Route>
+        <Route path="/admin" element={<DashBoardAdmin />}></Route>
         <Route path="/approvedRequests" element={<AllApprovedRequests />}></Route>
         <Route path="/pendingRequests" element={<AllPendingRequests />}></Route>
         <Route path="/declinedRequests" element={<AllDeclinedRequests />}></Route>
@@ -66,6 +70,7 @@ function App() {
         <Route path='/registerSuccess' element={<SuccessRegister></SuccessRegister>} />
 
       </Routes>
+      </UserProvider>
       <FooterComponent />
     </div>
 

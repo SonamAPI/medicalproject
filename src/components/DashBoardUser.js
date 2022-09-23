@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import APICalls from '../services/APICalls';
+import { userContext } from './ConstantClass';
 import Navigations from './Navigations';
-class DashBoard extends Component {
+class DashBoardUser extends Component {
+    
 
     constructor(props) {
         super(props)
 
         this.state = {
             first: "",
+            id: 0,
+            role: "",
             medicalDetails: [
 
                 { id: 1, name: "AA", address: "adre1" },
@@ -57,10 +61,15 @@ class DashBoard extends Component {
         window.location = '/createAdmin';
     }
 
-
+    static contextType = userContext;
 
     render() {
+        const { id, role } = this.context
 
+        // this.setState({
+        //     id: id,
+        //     role: role
+        // })
         return (
 
 
@@ -68,9 +77,14 @@ class DashBoard extends Component {
             <div >
                 <Navigations></Navigations>
 
+                Variable from context = <br></br>
+                {role} {id} <br></br>
+                state variables = <br></br>
+                {this.state.role} {this.state.id}
 
 
-                
+
+
 
 
 
@@ -148,7 +162,7 @@ class DashBoard extends Component {
                                     </div>
                                 </th>
                             </tr>
-                            
+
 
                             {/* Registraion cards */}
                             <tr className='text-center'>
@@ -222,7 +236,7 @@ class DashBoard extends Component {
                     </table>
                 </div>
 
-<br></br><br></br><br></br><br></br>
+                <br></br><br></br><br></br><br></br>
 
             </div>
 
@@ -232,4 +246,4 @@ class DashBoard extends Component {
     }
 }
 
-export default DashBoard
+export default DashBoardUser
