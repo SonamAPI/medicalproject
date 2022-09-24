@@ -12,7 +12,7 @@ export default class LoginComponent extends Component {
         this.state = {
             showLoginPage: true,
             email: "",
-            password: "",
+            clearImmediate: "",
             message: "",
             role: ""
         }
