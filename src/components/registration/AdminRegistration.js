@@ -180,7 +180,7 @@ export default class AdminRegistration extends Component {
           </div>
         </div >
 
-        <Link to="/admin">Back</Link>
+        <Link to="adminDashboard">Back</Link>
       </div >
     )
   }

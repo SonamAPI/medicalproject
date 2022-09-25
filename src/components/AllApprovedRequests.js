@@ -150,7 +150,7 @@ class AllApprovedRequests extends Component {
             </tbody>
           </table>
 
-          <Link to='/admin'>Back</Link>
+          <Link to='adminDashboard'>Back</Link>
         </div>
       </div>
     )

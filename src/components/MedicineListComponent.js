@@ -9,14 +9,14 @@ import RaiseRequestComponent from './RaiseRequestComponent';
 
 
 class MedicineListComponent extends Component {
-  
+
   constructor(props) {
-   
+
     super(props)
     this.raiseRequest = this.raiseRequest.bind(this);
 
     this.state = {
-      selectedMedicineID:"",      
+      selectedMedicineID: "",
       reqRaiseFlag: false,
       showTableFlag: false,
       roleForMedicineList: 'hospital',
@@ -30,17 +30,17 @@ class MedicineListComponent extends Component {
 
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     APICalls.getAllMedicines().then(
-      (resp)=>{
+      (resp) => {
         this.setState({
-          medicineList:resp.data
+          medicineList: resp.data
         })
       }
 
     );
 
-    
+
   }
 
   medicineQuantityChange(e) {
@@ -94,11 +94,11 @@ class MedicineListComponent extends Component {
     console.log("med ID=", medicineID);
     this.setState({
       reqRaiseFlag: false,
-      selectedMedicineID:medicineID
+      selectedMedicineID: medicineID
     })
 
-    window.location='/raise-req';
-   
+    window.location = '/raise-req';
+
   }
   render() {
     return (
@@ -109,37 +109,42 @@ class MedicineListComponent extends Component {
         {this.state.roleForMedicineList == 'user' ||
           this.state.roleForMedicineList == 'hospital' ||
           this.state.roleForMedicineList == 'NGO' ?
-          <div className='row '>
-            <table className='table table-striped table-bordered text-white text-center'>
+          <div className='container'>
+            <h4 class="display-4 text-white">Here are all available  medicines.... </h4>
+            
+            <br></br>
+            <div className='row '>
+              <table className='table table-striped table-bordered text-white text-center rounded-4'>
 
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th> Medicine Name</th>
-                  <th> Medicine Type Name</th>
-                  <th> Expriy Date</th>
-                  <th> Quantity</th>
-                  <th> Raise Request</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  this.state.medicineList.map(
-                    med =>
-                      <tr >
-                         <td> {med.medId} </td>
-                        <td> {med.medicineName} </td>
-                        <td> {med.medicineType}</td>
-                        <td> {med.medicineExpiry}</td>
-                        <td> {med.medicineQuantity}</td>
-                        <td>
-                           <button onClick={ () => this.raiseRequest(med.medId)} className="btn btn-success">Raise Request </button></td>
-                      </tr>
-                  )
-                }
-              </tbody>
-            </table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th> Medicine Name</th>
+                    <th> Medicine Type Name</th>
+                    <th> Expriy Date</th>
+                    <th> Quantity</th>
+                    <th> Raise Request</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    this.state.medicineList.map(
+                      med =>
+                        <tr >
+                          <td> {med.medId} </td>
+                          <td> {med.medicineName} </td>
+                          <td> {med.medicineType}</td>
+                          <td> {med.medicineExpiry}</td>
+                          <td> {med.medicineQuantity}</td>
+                          <td>
+                            <button onClick={() => this.raiseRequest(med.medId)} className="btn btn-success">Raise Request </button></td>
+                        </tr>
+                    )
+                  }
+                </tbody>
+              </table>
 
+            </div>
           </div> : ''}
 
 
@@ -187,7 +192,7 @@ class MedicineListComponent extends Component {
           </div>
           : ''}
 
-        {this.state.reqRaiseFlag==true?<RaiseRequestComponent medicineID={this.state.selectedMedicineID}></RaiseRequestComponent>:''}
+        {this.state.reqRaiseFlag == true ? <RaiseRequestComponent medicineID={this.state.selectedMedicineID}></RaiseRequestComponent> : ''}
         <Link to='/dashboard'>Back</Link>
       </div>
     )

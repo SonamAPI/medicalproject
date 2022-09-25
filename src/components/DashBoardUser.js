@@ -13,16 +13,6 @@ class DashBoardUser extends Component {
             first: "",
             id: 0,
             role: "",
-            medicalDetails: [
-
-                { id: 1, name: "AA", address: "adre1" },
-                { id: 1, name: "AA", address: "adre1" },
-                { id: 1, name: "AA", address: "adre1" },
-                { id: 1, name: "AA", address: "adre1" },
-                { id: 1, name: "AA", address: "adre1" },
-                { id: 1, name: "AA", address: "adre1" },
-                { id: 1, name: "AA", address: "adre1" }
-            ],
             items: []
 
         }
@@ -77,10 +67,6 @@ class DashBoardUser extends Component {
             <div >
                 <Navigations></Navigations>
 
-                Variable from context = <br></br>
-                {role} {id} <br></br>
-                state variables = <br></br>
-                {this.state.role} {this.state.id}
 
 
 
@@ -218,19 +204,7 @@ class DashBoardUser extends Component {
 
                                     </div>
                                 </th>
-                                <th scope="col">
-                                    <div className="card bg-light text-danger" style={{
-                                        "boxShadow": " 0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-                                        "padding": "16px",
-                                        "textAlign": "center",
-                                        "backgroundColor": " #f1f1f1",
-                                        "boxShadow": "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
-                                    }} onClick={this.createAdmin.bind(this)}>
-                                        <h3>Create Admin</h3>
-                                        <p>Create New Admin</p>
-
-                                    </div>
-                                </th>
+                                
                             </tr>
                         </tbody>
                     </table>

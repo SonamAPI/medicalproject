@@ -102,63 +102,70 @@ class AllRequests extends Component {
 
     window.location = '/all-request';
   }
-  logout(e){
+  logout(e) {
     e.preventDefault();
-    window.location = '/';   
-}
+    window.location = '/';
+  }
   render() {
     const statusList = ["aa", "dd", "ff"]
     return (
       <div>
         <Navigations></Navigations>
-       
+
         <br></br>
-        <div className='row'>
-          <table className='table table-striped table-bordered'>
-            <thead>
-              <tr>
-                <th>Sr. No.</th>
-                <th>Req. ID</th>
-                <th> Medicine Name</th>
-                <th> Medicine Type Name</th>
-                <th> Expriy Date</th>
-                <th> Quantity</th>
-                <th> Role</th>
-                <th> Current status</th>
-                <th> Status</th>
-                <th> Change Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                this.state.medicineList.map(
-                  (med, index) =>
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td> {med.raiseRequestmedId} </td>
-                      <td> {med.medicineName} </td>
-                      <td> {med.medicineType}</td>
-                      <td> {med.medicineExpiry}</td>
-                      <td> {med.medicineQuantity}</td>
-                      <td> {med.role}</td>
-                      <td> {med.status}</td>
-                      <td><select id='options' onChange={this.changeRequestStatus.bind(this)}>
-                        <option value="Created" selected>Created</option>
-                        <option value="Approved">Approved</option>
-                        <option value="Declined">Declined</option>
-                        <option value="Pending">Pending</option>
-                      </select></td>
+        <div className='container text-white'>
+          <br></br>
+          <h4 class="display-4">All Raised Requests</h4>
+          <br></br>
+          <div className='row'>
+            <table className='table table-striped '>
+              <thead>
+                <tr>
+                  <th>Sr. No.</th>
+                  <th>Req. ID</th>
+                  <th> Medicine Name</th>
+                  <th> Medicine Type Name</th>
+                  <th> Expriy Date</th>
+                  <th> Quantity</th>
+                  <th> Role</th>
+                  <th> Current status</th>
+                  <th> Status</th>
+                  <th> Change Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  this.state.medicineList.map(
+                    (med, index) =>
+                      <tr key={index}>
+                        <td> {index + 1} </td>
+                        <td> {med.raiseRequestmedId} </td>
+                        <td> {med.medicineName} </td>
+                        <td> {med.medicineType}</td>
+                        <td> {med.medicineExpiry}</td>
+                        <td> {med.medicineQuantity}</td>
+                        <td> {med.role}</td>
+                        <td> {med.status}</td>
+                        <td><select id='options' onChange={this.changeRequestStatus.bind(this)}>
+                          <option value="Created" selected>Created</option>
+                          <option value="Approved">Approved</option>
+                          <option value="Declined">Declined</option>
+                          <option value="Pending">Pending</option>
+                        </select></td>
 
-                      <td>
-                        <button onClick={() => this.changeStatus(med.raiseRequestmedId)} className="btn btn-info">Change Status </button></td>
-                    </tr>
-                )
-              }
-            </tbody>
-          </table>
+                        <td>
+                          <button onClick={() => this.changeStatus(med.raiseRequestmedId)} className="btn btn-info">Change Status </button></td>
+                      </tr>
+                  )
+                }
+              </tbody>
+            </table>
 
-          <Link to='/admin'>Back</Link>
+            <Link to='adminDashboard'>Back</Link>
+          </div>
+
         </div>
+
       </div>
     )
   }

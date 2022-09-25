@@ -28,7 +28,7 @@ class HeaderComponent extends Component {
      
         
         <div className="jumbotron text-center" style={{"marginBottom":"0"}}>
-          <h1>MEDICAL DONATION APPLICATION</h1>
+          <h1>Online Medicine Donation Application</h1>
          
         </div>
       )

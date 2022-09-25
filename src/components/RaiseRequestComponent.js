@@ -113,13 +113,16 @@ export default class RaiseRequestComponent extends Component {
         <br></br>
         <div className="container">
           <div className="row center-align">
-            <h4 className='text-center'>Raise Request Component</h4><br></br>
-
+            
+            
+            <h4>Raise A Request To Donate The Medicines..</h4>
+            
+            <br></br><br></br>
             <div className="card col-md-6 offset-md-3 offset-md-3 opacity-10">
-              <h3>Select Id to raise a request:</h3>
+            <br></br><br></br><h6>Select Id to raise a request: </h6>
               <form className='align-center'>
                 <div className="form-group">
-                  <label htmlFor='optinos'> Select Medicine: </label>
+                  {/* <label htmlFor='optinos'> Select Medicine: </label> */}
                   <select id='options'  defaultValue="" value={this.state.selectedMedicineID} onChange={this.getMedicineByID.bind(this)}>
                     {
                       this.state.medicineList.map(
@@ -135,13 +138,13 @@ export default class RaiseRequestComponent extends Component {
               <div className="card-body ">
                 <form >
                   <div className="form-group" >
-                    <label> Med Type: </label>
-                    <input placeholder="Hospital Name" name="medicineType" className="form-control" value={this.state.medicineDetails.medicineType || ""} onChange={this.changeMedicineType.bind(this)} />
+                    <label>Medicine Type: </label>
+                    <input placeholder="Medicine Type" name="medicineType" className="form-control" value={this.state.medicineDetails.medicineType || ""} onChange={this.changeMedicineType.bind(this)} />
                   </div>
                   <br></br>
                   <div className="form-group">
-                    <label> Med Name: </label>
-                    <input placeholder="Reg. No." name="medicineName" className="form-control" value={this.state.medicineDetails.medicineName || ""} onChange={this.DOBChange.bind(this)} />
+                    <label> Medicine Name: </label>
+                    <input placeholder="Medicine Name" name="medicineName" className="form-control" value={this.state.medicineDetails.medicineName || ""} onChange={this.DOBChange.bind(this)} />
                   </div><br></br>
                   <div className="form-group">
                     <label> Quantity: </label>
@@ -149,7 +152,7 @@ export default class RaiseRequestComponent extends Component {
                   </div><br></br>
                   <div className="form-group">
                     <label> Role: </label>
-                    <select id='options'   placeholder="role" name="role" className="form-control" value={this.state.role} onChange={this.changeRole.bind(this)} >
+                    <select id='options'   placeholder="Role" name="role" className="form-control" value={this.state.role} onChange={this.changeRole.bind(this)} >
                     <option  >Select</option>
                       <option value="User" >User</option>
                       <option value="Admin">Admin</option>
@@ -159,9 +162,9 @@ export default class RaiseRequestComponent extends Component {
                   </div><br></br>
                   <div className="form-group">
                     <label> Expiry: </label>
-                    <input placeholder="Hospital" name="medicineExpiry" className="form-control" value={this.state.medicineDetails.medicineExpiry || ""} onChange={this.referedHospitalChange.bind(this)} />
+                    <input placeholder="Expiry" name="medicineExpiry" className="form-control" value={this.state.medicineDetails.medicineExpiry || ""} onChange={this.referedHospitalChange.bind(this)} />
                   </div><br></br>
-                  <button className="btn btn-outline-primary" style={{ marginLeft: "100px" }} onClick={this.submitForm.bind(this)}>Save</button>
+                  <button className="btn btn-outline-primary"  onClick={this.submitForm.bind(this)}>Raise Request</button>
                   <button className="btn btn-outline-danger" style={{ marginLeft: "200px" }}>Cancel</button>
                 </form>
                 <Link to='/dashboard'>Back</Link>

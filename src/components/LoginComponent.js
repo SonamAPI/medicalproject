@@ -147,8 +147,7 @@ export default class LoginComponent extends Component {
                         <br></br>
                         <br></br>
 
-                     status variables =    {this.state.id}   {this.state.role} <br></br>
-                     context variables : {id}  {role}
+                     
                         <div className='container' style={{ "overflowX": "auto" }} >
                             <table className="table text-center" cellSpacing="0" cellPadding="0" style={{
                                 "padding": "16px",
@@ -238,7 +237,7 @@ export default class LoginComponent extends Component {
                                                 <input placeholder="Password" name="Password" className="form-control" value={this.state.password} onChange={this.chanePassword.bind(this)} />
                                             </div><br></br>
                                             <br></br>
-                                            <button className="btn btn-outline-primary text-center" onClick={this.submitDataF.bind(this)}>Save</button>
+                                            <button className="btn btn-outline-primary text-center" onClick={this.submitDataF.bind(this)}>Log In</button>
 
                                         </form>
                                     </div>

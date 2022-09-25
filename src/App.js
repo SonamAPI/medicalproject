@@ -10,7 +10,7 @@ import DonarRegistration from './components/registration/DonarRegistration';
 import NGORestration from './components/registration/NGORestration';
 import UserRegistration from './components/registration/UserRegistration';
 import AdminRegistration from './components/registration/AdminRegistration';
-import MenuComponent from './components/MenuComponent';
+
 import LoginComponent from './components/LoginComponent';
 
 import MedicineListComponent from './components/MedicineListComponent';
@@ -30,7 +30,7 @@ import ErrorPage from './components/ErrorPage';
 import background from "./medical2.jpg";
 import SuccessRegister from './components/SuccessRegister';
 import UserProvider from './components/ConstantClass';
-import ParentClass from './components/ContextAPIDemo/ParentClass';
+
 
 function App() {
   const myStyle = {
@@ -46,19 +46,19 @@ function App() {
       <HeaderComponent />
 
       <Routes>
-      <Route path="/parent" element={<ParentClass />} />
+     
         <Route path="/feedback" element={<FeedbackComponent />} />
         <Route path="/medicines" element={<MedicineListComponent />} />
         <Route path="/login" element={<LoginComponent />} />
-        <Route path="/dashboard" element={<DashBoardUser />} />
+        <Route path="/userDashboard" element={<DashBoardUser />} />
         <Route path="/raise-req" element={<RaiseRequestComponent />}></Route>
-        <Route path="/all-request" element={<AllRequests />}></Route>createNGO
+        <Route path="/all-request" element={<AllRequests />}></Route>
         <Route path="/createHospital" element={<HospitalRegistration />} />
         <Route path="/createUser" element={<UserRegistration />} />
         <Route path="/createNGO" element={<NGORestration />}></Route>
         <Route path="/createDonar" element={<DonarRegistration />}></Route>
         <Route path="/createAdmin" element={<AdminRegistration />}></Route>
-        <Route path="/admin" element={<DashBoardAdmin />}></Route>
+        <Route path="/adminDashboard" element={<DashBoardAdmin />}></Route>
         <Route path="/approvedRequests" element={<AllApprovedRequests />}></Route>
         <Route path="/pendingRequests" element={<AllPendingRequests />}></Route>
         <Route path="/declinedRequests" element={<AllDeclinedRequests />}></Route>
