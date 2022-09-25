@@ -77,7 +77,12 @@ class AboutUs extends Component {
 
 
 
+
+
         <div>
+          <br></br>
+
+          
         </div>
 
 
